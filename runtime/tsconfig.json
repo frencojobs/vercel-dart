@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "CommonJS",
+    "target": "ES2018",
+    "esModuleInterop": true,
+    "lib": ["ESNext"],
+    "outDir": "dist",
+    "sourceMap": true,
+    "declaration": true
+  },
+  "include": ["src/index.ts"],
+  "exclude": ["node_modules"]
+}

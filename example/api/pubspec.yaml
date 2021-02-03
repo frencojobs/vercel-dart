@@ -1,0 +1,7 @@
+name: index
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+dependencies:
+  vercel_dart:
+    path: /home/frenco/work/oss/vercel-dart/dart
+  shelf: ^0.7.9
