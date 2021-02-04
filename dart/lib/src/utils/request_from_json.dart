@@ -15,8 +15,7 @@ Request requestFromJson(String input) {
   return Request(
     method,
     Uri.parse(
-      (host.startsWith('localhost:') ? 'http://' : 'https://') + host + path,
-    ),
+        (host.startsWith('localhost:') ? 'http://' : 'https://') + host + path),
     headers: headers,
     body: body,
     encoding: Encoding.getByName(encoding),
