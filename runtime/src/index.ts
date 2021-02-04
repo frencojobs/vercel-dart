@@ -72,7 +72,8 @@ async function build({
     "utf-8"
   );
 
-  await download(files, workPath, meta);
+  const downloadedFiles = await download(files, workPath, meta);
+  const entrypointFilePath = downloadedFiles[entrypoint].fsPath;
 
   const env: Env = {
     ...process.env,
@@ -80,6 +81,7 @@ async function build({
     DIST: distPath,
     BUILDER: __dirname,
     ENTRYPOINT: entrypoint,
+    ENTRYPOINT_PATH: entrypointFilePath,
     VERCEL_DEV: meta.isDev ? "1" : "0",
   };
 
