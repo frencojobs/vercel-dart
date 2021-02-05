@@ -52,7 +52,7 @@ Idk, I don't know how to benchmark. Please help if you know.
 
 ## Acknowledgement
 
-While I was trying to build this, because I didn't any prior experience with things, a lot of open-source libraries/projects have been very useful to me. The prominent ones of them are [now-rust](https://github.com/mike-engel/now-rust), [vercel-bash](https://github.com/importpw/vercel-bash), [vercel-deno](https://github.com/TooTallNate/vercel-deno) and [aws-lambda-dart-runtime](https://github.com/awslabs/aws-lambda-dart-runtime).
+While I was trying to build this, because I didn't any prior experience with things, a lot of open-source libraries/projects were very useful to me. The prominent ones of them are [now-rust](https://github.com/mike-engel/now-rust), [vercel-bash](https://github.com/importpw/vercel-bash), [vercel-deno](https://github.com/TooTallNate/vercel-deno) and [aws-lambda-dart-runtime](https://github.com/awslabs/aws-lambda-dart-runtime).
 
 ## License
 
