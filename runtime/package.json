@@ -16,7 +16,9 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc",
-    "postbuild": "cpy src '!**/*.ts' dist"
+    "postbuild": "cpy src '!**/*.ts' dist",
+    "prepublish": "npm run build && cpy ../README.md .",
+    "postpublish": "rimraf README.md"
   },
   "dependencies": {
     "execa": "^5.0.0",
