@@ -34,19 +34,19 @@ Check out a hosted version of this demo at [](). More examples available in the 
 
 ## FAQ
 
-**Why does it use shelf?**
+### Why does it use shelf?
 
 Because shelf is arguably the most famous server-side dart library available.
 
-**Can I use `pubspec.yaml`**
+### Can I use `pubspec.yaml`
 
 Yes, just make sure it is at the same directory level as the function. The runtime will automatically run `pub get` before building the binary file.
 
-**Do I need to import the `vercel_dart` library in `pubspec.yaml`**
+### Do I need to import the `vercel_dart` library in `pubspec.yaml`
 
 No. The runtime will automatically add that library before compiling. No need to import it yourself.
 
-**Is it fast?**
+### Is it fast?
 
 Idk, I don't know how to benchmark. Please help if you know.
 
