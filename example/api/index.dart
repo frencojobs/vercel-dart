@@ -1,5 +1,6 @@
+import 'dart:io' show Platform;
 import 'package:shelf/shelf.dart';
 
-Future<Response> handler(Request req) async {
-  return Response.ok('Hey from ${req.url} of Serverless Dart');
+Response handler(Request req) {
+  return Response.ok('Hello, from Dart v${Platform.version}');
 }
