@@ -3,6 +3,7 @@ import path from "path";
 import {
   BuildOptions,
   createLambda,
+  debug,
   download,
   Env,
   getWriteableDirectory,
@@ -51,16 +52,35 @@ function makePubspec(input: string): string {
   });
 }
 
+// Implementation taken from https://github.com/mike-engel/now-rust/blob/master/src/index.ts
+async function gatherExtraFiles(
+  globMatcher: string | string[] | undefined,
+  entrypoint: string
+) {
+  if (!globMatcher) return {};
+  debug("Gathering extra files");
+  const entryDir = path.dirname(entrypoint);
+  if (Array.isArray(globMatcher)) {
+    const allMatches = await Promise.all(
+      globMatcher.map((pattern) => glob(pattern, entryDir))
+    );
+    return allMatches.reduce((acc, matches) => ({ ...acc, ...matches }), {});
+  }
+  return glob(globMatcher, entryDir);
+}
+
 const version = 1;
 async function build({
   files,
   entrypoint,
   workPath,
+  config = {},
   meta = {},
 }: BuildOptions): Promise<{ output: Lambda }> {
   const { devCacheDir = path.join(workPath, ".vercel", "cache") } = meta;
   const distPath = path.join(devCacheDir, "dart", entrypoint);
 
+  debug("Writing `pubspec.yaml` file");
   const tmp = await getWriteableDirectory();
   const pubspec = await readPubspec(path.dirname(entrypoint), {
     name: path.basename(entrypoint, "dart").replace("[", "_").replace("]", "_"),
@@ -72,6 +92,7 @@ async function build({
     "utf-8"
   );
 
+  debug("Downloading files");
   const downloadedFiles = await download(files, workPath, meta);
   const entrypointFilePath = downloadedFiles[entrypoint].fsPath;
 
@@ -85,6 +106,7 @@ async function build({
     VERCEL_DEV: meta.isDev ? "1" : "0",
   };
 
+  debug("Running `build.sh`");
   await execa(path.join(__dirname, "build.sh"), [], {
     env,
     cwd: workPath,
@@ -92,8 +114,13 @@ async function build({
     shell: "/bin/bash",
   });
 
+  const extraFiles = await gatherExtraFiles(
+    config.includeFiles,
+    entrypointFilePath
+  );
+
   const output = await createLambda({
-    files: await glob("**", distPath),
+    files: { ...extraFiles, ...(await glob("**", distPath)) },
     handler: "bootstrap",
     runtime: "provided",
   });
