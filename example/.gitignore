@@ -4,3 +4,4 @@
 pubspec.lock
 build/
 doc/api/
+yarn.lock
