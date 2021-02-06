@@ -1,3 +1,5 @@
+> Status: haven't publish to anywhere yet, still waiting for [this PR](https://github.com/awslabs/aws-lambda-dart-runtime/pull/24) to be merged due to a fatal bug.
+
 # Vercel-Dart
 
 A Vercel Runtime to run serverless Dart functions.
