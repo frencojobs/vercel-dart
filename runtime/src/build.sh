@@ -3,16 +3,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Install dart only in production
+ROOT_PATH="$(pwd)"
+
+Install dart only in production
 if [ "${VERCEL_DEV-}" != "1" ]; then
     echo "Installing \`dart\`"
-    sudo apt update
-    sudo apt install apt-transport-https
-    sudo sh -c "wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -"
-    sudo sh -c "wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list"
-    sudo apt update
-    sudo apt install dart
-    PATH="$PATH:/usr/lib/dart/bin"
+    curl -sfLS "https://storage.googleapis.com/dart-archive/channels/stable/release/2.10.5/sdk/dartsdk-linux-x64-release.zip" >dart.zip
+    unzip -oq dart.zip
+    rm dart.zip
+    PATH="$PATH:$ROOT_PATH/dart-sdk/bin"
     echo "Done installing \`dart\`"
 fi
 
@@ -20,7 +19,7 @@ fi
 cd "$(dirname "$ENTRYPOINT_PATH")"
 cp "$(basename "$ENTRYPOINT_PATH")" $TMP
 cd $TMP
-mv "$(basename $ENTRYPOINT_PATH)" entrypoint.dart
+mv "$(basename "$ENTRYPOINT_PATH")" entrypoint.dart
 cp "$BUILDER/bootstrap.dart.template" bootstrap.dart
 
 # Build binary file
