@@ -5,7 +5,7 @@ set -euo pipefail
 
 ROOT_PATH="$(pwd)"
 
-Install dart only in production
+# Install dart only in production
 if [ "${VERCEL_DEV-}" != "1" ]; then
     echo "Installing \`dart\`"
     curl -sfLS "https://storage.googleapis.com/dart-archive/channels/stable/release/2.10.5/sdk/dartsdk-linux-x64-release.zip" >dart.zip
