@@ -16,6 +16,14 @@ import fg from "fast-glob";
 import process from "process";
 import yaml from "js-yaml";
 
+const SDK_VERSION = ">=2.6.0 <3.0.0";
+const RUNTIME_PKG = {
+  git: {
+    url: "git@github.com:frencojobs/vercel-dart.git",
+    path: "dart",
+  },
+};
+
 chmodSync(path.join(__dirname, "build.sh"), 0o755);
 
 async function readPubspec(
@@ -45,9 +53,7 @@ function makePubspec(input: string): string {
     ...data,
     dependencies: {
       ...(data?.dependencies ?? {}),
-      vercel_dart: {
-        path: "/home/frenco/work/oss/vercel-dart/dart",
-      },
+      vercel_dart: RUNTIME_PKG,
     },
   });
 }
@@ -84,7 +90,7 @@ async function build({
   const tmp = await getWriteableDirectory();
   const pubspec = await readPubspec(path.dirname(entrypoint), {
     name: path.basename(entrypoint, "dart").replace("[", "_").replace("]", "_"),
-    sdk: ">=2.6.0 <3.0.0",
+    sdk: SDK_VERSION,
   });
   await fs.writeFile(
     path.join(tmp, "pubspec.yaml"),
