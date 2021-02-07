@@ -52,7 +52,6 @@ const IndexPage: NextPage = () => {
       <Spacer y={3} />
       <Row align="middle">
         <Button
-          type="secondary"
           icon={theme == "light" ? <Moon /> : <Sun />}
           auto
           size="mini"
@@ -60,7 +59,6 @@ const IndexPage: NextPage = () => {
         />
         <Spacer inline x={0.5} />
         <Button
-          type="secondary"
           icon={<GitHub />}
           auto
           size="mini"
