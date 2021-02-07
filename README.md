@@ -1,6 +1,6 @@
 # Vercel-Dart
 
-A Vercel Runtime to run serverless Dart functions.
+A Vercel Runtime to write serverless functions in Dart.
 
 ## Usage
 
@@ -30,7 +30,7 @@ Next, select the `vercel-dart` runtime to handle serverless dart functions in yo
 }
 ```
 
-Check out a hosted version of this demo at [](). More examples available in the repository's `example` folder.
+Check out a hosted version of this demo at [vercel-dart.vercel.app/api/hello](https://vercel-dart.vercel.app/api/hello). More examples available in the repository's `example` folder.
 
 ## FAQ
 
