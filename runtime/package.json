@@ -18,7 +18,7 @@
     "build": "tsc",
     "postbuild": "cpy src '!**/*.ts' dist",
     "prerelease": "npm run build && cpy ../README.md .",
-    "release": "np",
+    "release": "np --no-tests",
     "postrelease": "rimraf README.md"
   },
   "dependencies": {
