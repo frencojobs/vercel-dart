@@ -17,8 +17,9 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "postbuild": "cpy src '!**/*.ts' dist",
-    "prepublish": "npm run build && cpy ../README.md .",
-    "postpublish": "rimraf README.md"
+    "prerelease": "npm run build && cpy ../README.md .",
+    "release": "np",
+    "postrelease": "rimraf README.md"
   },
   "dependencies": {
     "execa": "^5.0.0",
@@ -33,6 +34,7 @@
     "@vercel/frameworks": "^0.2.0",
     "@vercel/routing-utils": "^1.9.2",
     "cpy-cli": "^3.1.1",
+    "np": "^7.3.0",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
     "typescript": "^4.1.3"
