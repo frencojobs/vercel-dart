@@ -19,7 +19,7 @@ import yaml from "js-yaml";
 const SDK_VERSION = '">=2.6.0 <3.0.0"';
 const RUNTIME_PKG = {
   git: {
-    url: "git@github.com:frencojobs/vercel-dart.git",
+    url: "https://github.com/frencojobs/vercel-dart",
     path: "dart",
   },
 };

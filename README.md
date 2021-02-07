@@ -25,7 +25,7 @@ Next, select the `vercel-dart` runtime to handle serverless dart functions in yo
 ```json
 {
   "functions": {
-    "api/**/*.dart": { "runtime": "vercel-dart@1.0.3" }
+    "api/**/*.dart": { "runtime": "vercel-dart@1.0.4" }
   }
 }
 ```
