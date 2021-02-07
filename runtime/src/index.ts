@@ -16,7 +16,7 @@ import fg from "fast-glob";
 import process from "process";
 import yaml from "js-yaml";
 
-const SDK_VERSION = ">=2.6.0 <3.0.0";
+const SDK_VERSION = '">=2.6.0 <3.0.0"';
 const RUNTIME_PKG = {
   git: {
     url: "git@github.com:frencojobs/vercel-dart.git",
@@ -89,7 +89,7 @@ async function build({
   debug("Writing `pubspec.yaml` file");
   const tmp = await getWriteableDirectory();
   const pubspec = await readPubspec(path.dirname(entrypoint), {
-    name: path.basename(entrypoint, "dart").replace("[", "_").replace("]", "_"),
+    name: path.basename(entrypoint, "dart").replace(/[\W_]+/g, "_"),
     sdk: SDK_VERSION,
   });
   await fs.writeFile(
