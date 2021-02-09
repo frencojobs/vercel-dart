@@ -75,7 +75,7 @@ async function gatherExtraFiles(
   return glob(globMatcher, entryDir);
 }
 
-const version = 1;
+const version = 3;
 async function build({
   files,
   entrypoint,
