@@ -1,3 +1,5 @@
+/// named .txt to not show import errors
+
 import 'package:vercel_dart/runtime.dart' show handle;
 import 'entrypoint.dart' show handler;
 

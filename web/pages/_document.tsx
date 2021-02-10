@@ -1,16 +1,16 @@
 import Document, {
-  Html,
+  DocumentContext,
   Head,
+  Html,
   Main,
   NextScript,
-  DocumentContext,
-} from "next/document";
-import { CssBaseline } from "@geist-ui/react";
+} from 'next/document'
+import { CssBaseline } from '@geist-ui/react'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx);
-    const styles = CssBaseline.flush();
+    const initialProps = await Document.getInitialProps(ctx)
+    const styles = CssBaseline.flush()
 
     return {
       ...initialProps,
@@ -20,7 +20,7 @@ export default class MyDocument extends Document {
           {styles}
         </>
       ),
-    };
+    }
   }
 
   render(): JSX.Element {
@@ -32,6 +32,6 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }

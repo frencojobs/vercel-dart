@@ -3,7 +3,7 @@ description: A utility library for writing serverless functions in the Vercel Da
 version: 1.0.0
 repository: https://github.com/frencojobs/vercel-dart
 
-publish_to: none
+publish_to: none # until the PR #24 is merged
 
 environment:
   sdk: ">=2.6.0 <3.0.0"

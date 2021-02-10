@@ -1,7 +1,11 @@
+# vercel
 .vercel
+.next
+out
+
+# dart
 .dart_tool/
 .packages
 pubspec.lock
 build/
 doc/api/
-.next

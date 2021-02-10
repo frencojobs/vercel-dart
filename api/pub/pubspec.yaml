@@ -2,5 +2,5 @@ name: index
 environment:
   sdk: ">=2.6.0 <3.0.0"
 dependencies:
-  pub_api_client: ^1.0.9 # only for pub.dart example
+  pub_api_client: ^1.0.9
   shelf: ^0.7.9

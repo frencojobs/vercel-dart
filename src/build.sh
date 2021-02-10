@@ -20,7 +20,7 @@ cd "$(dirname "$ENTRYPOINT_PATH")"
 cp "$(basename "$ENTRYPOINT_PATH")" $TMP
 cd $TMP
 mv "$(basename "$ENTRYPOINT_PATH")" entrypoint.dart
-cp "$BUILDER/bootstrap.dart.template" bootstrap.dart
+cp "$BUILDER/bootstrap.dart.txt" bootstrap.dart
 
 # Build binary file
 pub get

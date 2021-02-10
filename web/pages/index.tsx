@@ -1,24 +1,24 @@
-import { NextPage } from "next";
-import { Fragment, useContext } from "react";
-import { Button, Code, Link, Page, Row, Spacer, Text } from "@geist-ui/react";
-import { themeContext } from "../utils/themeContext";
+import { Button, Code, Link, Page, Row, Spacer, Text } from '@geist-ui/react'
+import { Fragment, useContext } from 'react'
+import { NextPage } from 'next'
+import ChevronsRight from '@geist-ui/react-icons/chevronsRight'
+import GitHub from '@geist-ui/react-icons/github'
+import Moon from '@geist-ui/react-icons/moon'
+import Sun from '@geist-ui/react-icons/sun'
 
-import ChevronsRight from "@geist-ui/react-icons/chevronsRight";
-import Sun from "@geist-ui/react-icons/sun";
-import Moon from "@geist-ui/react-icons/moon";
-import GitHub from "@geist-ui/react-icons/github";
+import { themeContext } from '../utils/themeContext'
 
 const examples = {
-  hello: "A basic hello world function",
-  query: "Reading query from a request",
+  hello: 'A basic hello world function',
+  query: 'Reading query from a request',
   redirect: "Changing the response's status code",
-  json: "Setting the content-type to json",
-  html: "Responding with HTML contents",
-  pub: "Using a library from pub.dev",
-};
+  json: 'Setting the content-type to json',
+  html: 'Responding with HTML contents',
+  pub: 'Using a library from pub.dev',
+}
 
 const IndexPage: NextPage = () => {
-  const { theme, toggleTheme } = useContext(themeContext);
+  const { theme, toggleTheme } = useContext(themeContext)
 
   return (
     <Page size="mini" dotBackdrop>
@@ -30,7 +30,7 @@ const IndexPage: NextPage = () => {
 
       <Row
         align="middle"
-        style={{ fontSize: "14px", textTransform: "uppercase", height: "1rem" }}
+        style={{ fontSize: '14px', textTransform: 'uppercase', height: '1rem' }}
       >
         <ChevronsRight size={18} />
         <Spacer inline x={0.1} />
@@ -38,7 +38,7 @@ const IndexPage: NextPage = () => {
       </Row>
       <Spacer y={0.7} />
 
-      <div style={{ paddingLeft: "10px" }}>
+      <div style={{ paddingLeft: '10px' }}>
         {Object.entries(examples).map(([url, desc]) => (
           <Fragment key={url}>
             <Link href={`/api/${url}`} target="_blank">
@@ -52,7 +52,7 @@ const IndexPage: NextPage = () => {
       <Spacer y={3} />
       <Row align="middle">
         <Button
-          icon={theme == "light" ? <Moon /> : <Sun />}
+          icon={theme == 'light' ? <Moon /> : <Sun />}
           auto
           size="mini"
           onClick={() => toggleTheme()}
@@ -63,12 +63,12 @@ const IndexPage: NextPage = () => {
           auto
           size="mini"
           onClick={() =>
-            window.open("https://github.com/frencojobs/vercel-dart")
+            window.open('https://github.com/frencojobs/vercel-dart')
           }
         />
       </Row>
     </Page>
-  );
-};
+  )
+}
 
-export default IndexPage;
+export default IndexPage
