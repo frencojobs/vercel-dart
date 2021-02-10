@@ -17,10 +17,10 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "postbuild": "cpy src '!**/*.ts' dist",
-    "prerelease": "yarn build && cpy ../README.md .",
+    "prerelease": "yarn build",
     "release": "yarn publish",
     "postrelease": "rimraf README.md",
-    "vercel-build": "yarn build && cd web && yarn install && yarn build"
+    "vercel-build": "cd web && yarn install && yarn build"
   },
   "dependencies": {
     "execa": "^5.0.0",
