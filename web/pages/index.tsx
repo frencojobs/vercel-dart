@@ -41,7 +41,7 @@ const IndexPage: NextPage = () => {
       <div style={{ paddingLeft: '10px' }}>
         {Object.entries(examples).map(([url, desc]) => (
           <Fragment key={url}>
-            <Link href={`/api/${url}`} target="_blank">
+            <Link href={`/api/${url}`}>
               <Code>/{url}</Code>&nbsp;- {desc}
             </Link>
             <Spacer y={0.5} />
