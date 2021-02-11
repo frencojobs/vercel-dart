@@ -86,9 +86,13 @@ async function build({
   const { devCacheDir = path.join(workPath, '.vercel', 'cache') } = meta
   const distPath = path.join(devCacheDir, 'dart', entrypoint)
 
+  debug('Downloading files')
+  const downloadedFiles = await download(files, workPath, meta)
+  const entrypointFilePath = downloadedFiles[entrypoint].fsPath
+
   debug('Writing `pubspec.yaml` file')
   const tmp = await getWriteableDirectory()
-  const pubspec = await readPubspec(path.dirname(entrypoint), {
+  const pubspec = await readPubspec(path.dirname(entrypointFilePath), {
     name: path.basename(entrypoint, 'dart').replace(/[\W_]+/g, '_'),
     sdk: SDK_VERSION,
   })
@@ -97,10 +101,6 @@ async function build({
     makePubspec(pubspec),
     'utf-8'
   )
-
-  debug('Downloading files')
-  const downloadedFiles = await download(files, workPath, meta)
-  const entrypointFilePath = downloadedFiles[entrypoint].fsPath
 
   const env: Env = {
     ...process.env,
