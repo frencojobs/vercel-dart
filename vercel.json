@@ -1,6 +1,6 @@
 {
   "public": true,
   "functions": {
-    "api/**/*.dart": { "runtime": "@frenco/vercel-dev-runtime@0.0.2" }
+    "api/**/*.dart": { "runtime": "@frenco/vercel-dev-runtime@0.0.3" }
   }
 }
