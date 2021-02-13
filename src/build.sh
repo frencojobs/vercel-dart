@@ -3,18 +3,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_PATH="$(pwd)"
-
-# Install dart only in production
-if [ "${VERCEL_DEV-}" != "1" ]; then
-    echo "Installing \`dart\`"
-    curl -sfLS "https://storage.googleapis.com/dart-archive/channels/stable/release/2.10.5/sdk/dartsdk-linux-x64-release.zip" >dart.zip
-    unzip -oq dart.zip
-    rm dart.zip
-    PATH="$PATH:$ROOT_PATH/dart-sdk/bin"
-    echo "Done installing \`dart\`"
-fi
-
 # Copy files into TMP
 cd "$(dirname "$ENTRYPOINT_PATH")"
 cp "$(basename "$ENTRYPOINT_PATH")" $TMP
