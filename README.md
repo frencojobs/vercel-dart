@@ -1,6 +1,4 @@
-> Currently a work in progress, don't use it yet!
-
-# Vercel-Dart
+<img align="center" src="https://raw.githubusercontent.com/frencojobs/vercel-dart/main/.github/cover.png" />
 
 A Vercel Runtime to write serverless functions in Dart.
 
