@@ -36,7 +36,7 @@ Check out a hosted version of this demo at [vercel-dart.vercel.app/api/hello](ht
 
 > Check out the repository's `api` folder for more examples.
 
-### Reading the query from a Request
+**Reading Queries from the Request**
 
 ```dart
 import 'package:shelf/shelf.dart';
@@ -46,7 +46,7 @@ Response handler(Request req) {
 }
 ```
 
-### Changing the Response's Status Code
+**Changing the Response's Status Code**
 
 ```dart
 import 'package:shelf/shelf.dart';
@@ -55,7 +55,7 @@ Response handler(Request req) =>
     Response.movedPermanently('https://youtu.be/dQw4w9WgXcQ');
 ```
 
-### Using JSON Content Type
+**Using JSON Content Type**
 
 ```dart
 import 'dart:convert';
@@ -78,7 +78,7 @@ Response handler(Request req) {
 }
 ```
 
-### Using HTML Content Type
+**Using HTML Content Type**
 
 ```dart
 import 'dart:io';
