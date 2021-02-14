@@ -3,6 +3,7 @@
   "version": "1.0.5",
   "description": "Vercel Runtime for Dart serverless functions",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "author": "Frenco <hey@frenco.dev>",
   "license": "MIT",
   "repository": {
@@ -10,7 +11,8 @@
     "url": "https://github.com/frencojobs/vercel-dart"
   },
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
