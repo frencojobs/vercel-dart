@@ -30,7 +30,73 @@ Next, select the `vercel-dart` runtime to handle serverless dart functions in yo
 }
 ```
 
-Check out a hosted version of this demo at [vercel-dart.vercel.app/api/hello](https://vercel-dart.vercel.app/api/hello). More examples available in the repository's `api` folder.
+Check out a hosted version of this demo at [vercel-dart.vercel.app/api/hello](https://vercel-dart.vercel.app/api/hello). 
+
+## Examples
+
+> Check out the repository's `api` folder for more examples.
+
+### Reading the query from a Request
+
+```dart
+import 'package:shelf/shelf.dart';
+
+Response handler(Request req) {
+  return Response.ok('Query is: ${req.requestedUri.query}');
+}
+```
+
+### Changing the Response's Status Code
+
+```dart
+import 'package:shelf/shelf.dart';
+
+Response handler(Request req) =>
+    Response.movedPermanently('https://youtu.be/dQw4w9WgXcQ');
+```
+
+### Using JSON Content Type
+
+```dart
+import 'dart:convert';
+import 'dart:io';
+import 'package:shelf/shelf.dart';
+
+Response handler(Request req) {
+  final data = {
+    'host': req.requestedUri.host,
+    'path': req.requestedUri.path,
+    'query': req.requestedUri.queryParameters
+  };
+
+  return Response.ok(
+    jsonEncode(data),
+    headers: {
+      'content-type': ContentType.json.toString(),
+    },
+  );
+}
+```
+
+### Using HTML Content Type
+
+```dart
+import 'dart:io';
+import 'package:shelf/shelf.dart';
+
+Response handler(Request req) {
+  final html = '''
+    <h1>Hello, World</h1>
+  ''';
+
+  return Response.ok(
+    html,
+    headers: {
+      'content-type': ContentType.html.toString(),
+    },
+  );
+}
+```
 
 ## Configuration
 
@@ -49,21 +115,17 @@ Learn more about dart channels and versions [here](https://dart.dev/tools/sdk/ar
 
 ## FAQ
 
-### Why does it use shelf?
-
-Two reasons. First is because shelf is arguably the most famous server-side dart library available. Second is because I'm thinking about implementing the local server for better performance during the development and shelf would make it easier to implement it. I haven't done that, but it's definitely a way to go.
-
 ### Can I use `pubspec.yaml`?
 
 Yes, just make sure it is at the same directory level as the function. The runtime will automatically run `pub get` before building the binary file.
 
 ### Is it fast?
 
-I'm not sure because I don't know how to benchmark. But according to my experience, it feels like it's really fast except for the cold starts. I may be biased so help me benchmark it if you know how to.
+I'm not sure because I don't know how to benchmark. But according to my experience, it feels like it's really fast. I may be biased so help me benchmark it if you know how to.
 
 ### Can I run it with `vercel dev` locally?
 
-Yes, but it might be a little bit slower than on the server because I haven't implemented a performance-wise development server yet. Also because it won't install `dart` during development, make sure your machine has a working version of `dart >= 2.6` installed properly.
+Yes, but because it won't install `dart` during development, make sure your machine has a working version of `dart >= 2.6` installed properly.
 
 ## Acknowledgement
 

@@ -2,12 +2,12 @@ import 'dart:io';
 import 'package:shelf/shelf.dart';
 
 Response handler(Request req) {
-  final data = '''
+  final html = '''
     <h1>Hello, World</h1>
   ''';
 
   return Response.ok(
-    data,
+    html,
     headers: {
       'content-type': ContentType.html.toString(),
     },
