@@ -12,10 +12,10 @@ export async function readPubspec(
 
   if (files.length == 0) {
     return `
-    name: ${defaults.name}
-    environment:
-      sdk: ${defaults.sdk}
-    `
+name: ${defaults.name}
+environment:
+  sdk: ${defaults.sdk}
+`
   } else {
     const data = await fs.readFile(path.join(directory, files[0]), 'utf-8')
     return data
