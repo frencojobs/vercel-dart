@@ -35,7 +35,7 @@ Next, select the `vercel-dart` runtime to handle serverless dart functions in yo
 
 > Check out the repository's `api` folder for more examples.
 
-**Reading Queries from the Request**
+### Reading Queries
 
 ```dart
 import 'package:shelf/shelf.dart';
@@ -46,17 +46,23 @@ Response handler(Request req) {
 ```
 **Demo:** [vercel-dart.vercel.app/api/query](https://vercel-dart.vercel.app/api/query?hello=world)
 
-**Changing the Response's Status Code**
+### Custom Status Codes
 
 ```dart
 import 'package:shelf/shelf.dart';
 
 Response handler(Request req) =>
     Response.movedPermanently('https://youtu.be/dQw4w9WgXcQ');
+    
+// Response.movedPermanetly -> 301
+// Response.notFound -> 404
+// etc.
 ```
 **Demo:** [vercel-dart.vercel.app/api/redirect](https://vercel-dart.vercel.app/api/redirect)
 
-**Using JSON Content Type**
+### Custom Content Types
+
+#### JSON
 
 ```dart
 import 'dart:convert';
@@ -80,7 +86,7 @@ Response handler(Request req) {
 ```
 **Demo:** [vercel-dart.vercel.app/api/json](https://vercel-dart.vercel.app/api/json)
 
-**Using HTML Content Type**
+#### HTML
 
 ```dart
 import 'dart:io';
