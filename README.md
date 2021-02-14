@@ -29,8 +29,7 @@ Next, select the `vercel-dart` runtime to handle serverless dart functions in yo
   }
 }
 ```
-
-Check out a hosted version of this demo at [vercel-dart.vercel.app/api/hello](https://vercel-dart.vercel.app/api/hello). 
+**Demo:** [vercel-dart.vercel.app/api/hello](https://vercel-dart.vercel.app/api/hello)
 
 ## Examples
 
@@ -45,6 +44,7 @@ Response handler(Request req) {
   return Response.ok('Query is: ${req.requestedUri.query}');
 }
 ```
+**Demo:** [vercel-dart.vercel.app/api/query](https://vercel-dart.vercel.app/api/query?hello=world)
 
 **Changing the Response's Status Code**
 
@@ -54,6 +54,7 @@ import 'package:shelf/shelf.dart';
 Response handler(Request req) =>
     Response.movedPermanently('https://youtu.be/dQw4w9WgXcQ');
 ```
+**Demo:** [vercel-dart.vercel.app/api/redirect](https://vercel-dart.vercel.app/api/redirect)
 
 **Using JSON Content Type**
 
@@ -77,6 +78,7 @@ Response handler(Request req) {
   );
 }
 ```
+**Demo:** [vercel-dart.vercel.app/api/json](https://vercel-dart.vercel.app/api/json)
 
 **Using HTML Content Type**
 
@@ -97,6 +99,7 @@ Response handler(Request req) {
   );
 }
 ```
+**Demo:** [vercel-dart.vercel.app/api/html](https://vercel-dart.vercel.app/api/html)
 
 ## Configuration
 
