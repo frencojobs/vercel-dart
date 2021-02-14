@@ -1,6 +1,7 @@
 require('esbuild').build({
   entryPoints: ['src/index.ts'],
   outdir: 'dist',
+  minify: true,
   bundle: true,
   platform: 'node',
   tsconfig: 'tsconfig.json',
