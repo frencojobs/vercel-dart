@@ -3,7 +3,6 @@
   "version": "1.0.5",
   "description": "Vercel Runtime for Dart serverless functions",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "author": "Frenco <hey@frenco.dev>",
   "license": "MIT",
   "repository": {
@@ -19,7 +18,6 @@
     "postbuild": "cpy src '!**/*.ts' dist",
     "prerelease": "yarn build",
     "release": "yarn publish",
-    "postrelease": "rimraf README.md",
     "vercel-build": "cd web && yarn install && yarn build"
   },
   "dependencies": {
