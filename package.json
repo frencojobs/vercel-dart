@@ -1,6 +1,6 @@
 {
   "name": "vercel-dart",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Vercel Runtime for Dart serverless functions",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
