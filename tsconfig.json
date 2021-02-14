@@ -4,11 +4,8 @@
     "module": "CommonJS",
     "target": "ES2018",
     "esModuleInterop": true,
-    "lib": ["ESNext"],
-    "outDir": "dist",
-    "sourceMap": true,
-    "declaration": true
+    "lib": ["ESNext"]
   },
-  "include": ["src/index.ts"],
+  "include": ["src/index.ts", "src/utils/*.ts"],
   "exclude": ["node_modules"]
 }

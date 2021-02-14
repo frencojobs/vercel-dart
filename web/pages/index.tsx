@@ -8,13 +8,13 @@ import Sun from '@geist-ui/react-icons/sun'
 
 import { themeContext } from '../utils/themeContext'
 
-const examples = {
-  hello: 'A basic hello world function',
-  query: 'Reading query from a request',
-  redirect: "Changing the response's status code",
-  json: 'Setting the content-type to json',
-  html: 'Responding with HTML contents',
-  pub: 'Using a library from pub.dev',
+const examples: Record<string, { query?: string; description: string }> = {
+  hello: { description: 'A basic hello world function' },
+  query: { query: 'hello=world', description: 'Reading query from a request' },
+  redirect: { description: "Changing the response's status code" },
+  json: { description: 'Setting the content-type to json' },
+  html: { description: 'Responding with HTML contents' },
+  pub: { query: 'package=derry', description: 'Using a library from pub.dev' },
 }
 
 const IndexPage: NextPage = () => {
@@ -39,10 +39,10 @@ const IndexPage: NextPage = () => {
       <Spacer y={0.7} />
 
       <div style={{ paddingLeft: '10px' }}>
-        {Object.entries(examples).map(([url, desc]) => (
+        {Object.entries(examples).map(([url, body]) => (
           <Fragment key={url}>
-            <Link href={`/api/${url}`}>
-              <Code>/{url}</Code>&nbsp;- {desc}
+            <Link href={`/api/${url}${body.query ? `?${body.query}` : ''}`}>
+              <Code>/{url}</Code>&nbsp;- {body.description}
             </Link>
             <Spacer y={0.5} />
           </Fragment>
