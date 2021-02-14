@@ -25,30 +25,43 @@ Next, select the `vercel-dart` runtime to handle serverless dart functions in yo
 ```json
 {
   "functions": {
-    "api/**/*.dart": { "runtime": "vercel-dart" }
+    "api/**/*.dart": { "runtime": "vercel-dart@1.1.0" }
   }
 }
 ```
 
-Check out a hosted version of this demo at [vercel-dart.vercel.app/api/hello](https://vercel-dart.vercel.app/api/hello). More examples available in the repository's `example` folder.
+Check out a hosted version of this demo at [vercel-dart.vercel.app/api/hello](https://vercel-dart.vercel.app/api/hello). More examples available in the repository's `api` folder.
+
+## Configuration
+
+Here are the [build environment
+variables](https://vercel.com/docs/configuration#project/build-env) that you
+may configure for your serverless functions.
+
+| Name           | Description                                           | Default  |
+|----------------|-------------------------------------------------------|----------|
+| `DART_CHANNEL` | The `dart` channel that serverless function will use. | `stable` |
+| `DART_VERSION` | The `dart` version that serverless function will use. | `2.10.5` |
+
+> Note that you need to use the dart version `>= 2.6` for `dart2native` compiler to work. 
 
 ## FAQ
 
 ### Why does it use shelf?
 
-Because shelf is arguably the most famous server-side dart library available.
+Two reasons. First is because shelf is arguably the most famous server-side dart library available. Second is because I'm thinking about implementing the local server for better performance during the development. I haven't done that, but it's definitely a way to go.
 
 ### Can I use `pubspec.yaml`?
 
 Yes, just make sure it is at the same directory level as the function. The runtime will automatically run `pub get` before building the binary file.
 
-### Do I need to import the `vercel_dart` library in `pubspec.yaml`?
-
-No. The runtime will automatically install that library before compiling. No need to import it yourself.
-
 ### Is it fast?
 
-Idk, I don't know how to benchmark. Please help if you know.
+Idk, I don't know how to benchmark. But according to my experience, it feels like it's really fast except for the cold starts. Help me benchmark it if you know how to.
+
+### Can I run it with `vercel dev` locally?
+
+Yes, but it might be a little bit slower than on the server because I haven't implement a performance-wise development server yet. Because it won't install `dart` during development, make sure your machine have a working version of `dart >= 2.6` installed properly.
 
 ## Acknowledgement
 
