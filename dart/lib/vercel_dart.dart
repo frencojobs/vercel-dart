@@ -8,10 +8,13 @@ void handle(shelf.Handler handler, {String name = 'bootstrap'}) {
   // ignore: prefer_function_declarations_over_variables
   final aws.Handler<Event> _handler = (context, event) async {
     final res = await handler(event.body);
-    return aws.InvocationResult(
-      context.requestId!,
-      await responseToObject(res),
-    );
+
+    if (context.requestId != null) {
+      return aws.InvocationResult(
+        context.requestId!,
+        await responseToObject(res),
+      );
+    }
   };
 
   aws.Runtime()
