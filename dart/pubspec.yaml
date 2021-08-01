@@ -3,11 +3,18 @@ description: A utility library for writing serverless functions in the Vercel Da
 version: 1.0.1
 repository: https://github.com/frencojobs/vercel-dart
 
+publish_to: none # wait until my PR is merged to the published `aws_lambda_dart_runtime`
+
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  aws_lambda_dart_runtime: ^1.1.0
+  # aws_lambda_dart_runtime: ^1.1.0
+  aws_lambda_dart_runtime:
+    git:
+      url: https://github.com/frencojobs/aws-lambda-dart-runtime.git
+      ref: katallaxie/main
+
   json_annotation: ^4.1.0
   shelf: ^1.2.0
 
