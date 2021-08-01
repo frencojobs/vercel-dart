@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:shelf/shelf.dart' show Request;
-
 import 'package:vercel_dart/src/utils/request_from_json.dart';
 
 part 'event.g.dart';
@@ -14,8 +13,8 @@ class Event {
   final Request body;
 
   const Event({
-    this.action,
-    this.body,
+    required this.action,
+    required this.body,
   });
 
   factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);

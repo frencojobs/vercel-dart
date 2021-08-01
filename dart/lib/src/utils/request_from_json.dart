@@ -10,7 +10,7 @@ Request requestFromJson(String input) {
   final path = map['path'] as String;
   final headers = map['headers'] as Map<String, Object>;
   final body = map['body'];
-  final encoding = map['encoding'] as String ?? '';
+  final encoding = map['encoding'] as String? ?? '';
 
   return Request(
     method,
