@@ -1,6 +1,6 @@
 name: vercel_dart
 description: A utility library for writing serverless functions in the Vercel Dart Runtime.
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/frencojobs/vercel-dart
 
 environment:
