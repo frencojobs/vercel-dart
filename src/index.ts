@@ -1,27 +1,26 @@
 import {
   BuildOptions,
-  Lambda,
   createLambda,
   debug,
   download,
   getWriteableDirectory,
   glob,
-  shouldServe,
+  Lambda,
+  shouldServe
 } from '@vercel/build-utils'
-import { chmodSync, promises as fs } from 'fs'
 import execa from 'execa'
+import {chmodSync, promises as fs} from 'fs'
 import path from 'path'
 import process from 'process'
-
 import {
   DEFAULT_DART_CHANNEL,
   DEFAULT_DART_VERSION,
   RUNTIME_PKG,
-  SDK_VERSION,
+  SDK_VERSION
 } from './utils/constants'
-import { gatherExtraFiles } from './utils/gatherExtraFiles'
-import { makePubspec } from './utils/makePubspec'
-import { readPubspec } from './utils/readPubspec'
+import {gatherExtraFiles} from './utils/gatherExtraFiles'
+import {makePubspec} from './utils/makePubspec'
+import {readPubspec} from './utils/readPubspec'
 
 chmodSync(path.join(__dirname, 'install.sh'), 0o755)
 chmodSync(path.join(__dirname, 'build.sh'), 0o755)
@@ -32,9 +31,9 @@ async function build({
   entrypoint,
   workPath,
   config = {},
-  meta = {},
-}: BuildOptions): Promise<{ output: Lambda }> {
-  const { devCacheDir = path.join(workPath, '.vercel', 'cache') } = meta
+  meta = {}
+}: BuildOptions): Promise<{output: Lambda}> {
+  const {devCacheDir = path.join(workPath, '.vercel', 'cache')} = meta
   const distPath = path.join(devCacheDir, 'dart', entrypoint)
 
   const dartChannel = (config.DART_CHANNEL as string) ?? DEFAULT_DART_CHANNEL
@@ -46,11 +45,11 @@ async function build({
       env: {
         ...process.env,
         DART_CHANNEL: dartChannel,
-        DART_VERSION: dartVersion,
+        DART_VERSION: dartVersion
       },
       cwd: workPath,
       stdio: 'inherit',
-      shell: '/bin/bash',
+      shell: '/bin/bash'
     })
     debug(`Installed \`dart v${dartVersion}\``)
   }
@@ -63,7 +62,7 @@ async function build({
   const tmp = await getWriteableDirectory()
   const pubspec = await readPubspec(path.dirname(entrypointFilePath), {
     name: path.basename(entrypoint, 'dart').replace(/[\W_]+/g, '_'),
-    sdk: SDK_VERSION,
+    sdk: SDK_VERSION
   })
   await fs.writeFile(
     path.join(tmp, 'pubspec.yaml'),
@@ -80,11 +79,11 @@ async function build({
       DIST: distPath,
       BUILDER: __dirname,
       ENTRYPOINT: entrypoint,
-      ENTRYPOINT_PATH: entrypointFilePath,
+      ENTRYPOINT_PATH: entrypointFilePath
     },
     cwd: workPath,
     stdio: 'inherit',
-    shell: '/bin/bash',
+    shell: '/bin/bash'
   })
 
   const extraFiles = await gatherExtraFiles(
@@ -93,12 +92,12 @@ async function build({
   )
 
   const output = await createLambda({
-    files: { ...extraFiles, ...(await glob('**', distPath)) },
+    files: {...extraFiles, ...(await glob('**', distPath))},
     handler: 'bootstrap',
-    runtime: 'provided',
+    runtime: 'provided'
   })
 
-  return { output }
+  return {output}
 }
 
-export { version, build, shouldServe }
+export {version, build, shouldServe}

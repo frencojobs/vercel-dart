@@ -2,15 +2,15 @@ import yaml from 'js-yaml'
 
 export function makePubspec(
   input: string,
-  pkg: string | { git: { url: string; path: string } }
+  pkg: string | {git: {url: string; path: string}}
 ): string {
-  const data = (yaml.load(input) as any) ?? {}
+  const data = (yaml.load(input) as Record<string, unknown>) ?? {}
 
   return yaml.dump({
     ...data,
     dependencies: {
-      ...(data?.dependencies ?? {}),
-      vercel_dart: pkg,
-    },
+      ...((data?.dependencies as Record<string, unknown>) ?? {}),
+      vercel_dart: pkg
+    }
   })
 }
