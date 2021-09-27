@@ -10,12 +10,11 @@ Request requestFromJson(String input) {
   final path = map['path'] as String;
   final headers = map['headers'] as Map<String, Object>;
   final body = map['body'];
-  final encoding = map['encoding'] as String ?? '';
+  final encoding = map['encoding'] as String?;
 
   return Request(
     method,
-    Uri.parse(
-        (host.startsWith('localhost:') ? 'http://' : 'https://') + host + path),
+    Uri.parse('http${host.startsWith('localhost') ? '' : 's'}://$host$path'),
     headers: headers,
     body: body,
     encoding: Encoding.getByName(encoding),
