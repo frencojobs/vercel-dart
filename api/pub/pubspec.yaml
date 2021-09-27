@@ -1,6 +1,6 @@
 name: index
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 dependencies:
-  pub_api_client: ^1.0.9
-  shelf: ^0.7.9
+  pub_api_client: ^2.1.1
+  shelf: ^1.2.0
