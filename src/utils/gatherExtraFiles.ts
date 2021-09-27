@@ -1,11 +1,11 @@
-import {debug, glob} from '@vercel/build-utils'
+import {debug, Files, glob} from '@vercel/build-utils'
 import path from 'path'
 
 // Implementation taken from https://github.com/mike-engel/now-rust/blob/master/src/index.ts
 export async function gatherExtraFiles(
   globMatcher: string | string[] | undefined,
   entrypoint: string
-): Promise<any> {
+): Promise<Files> {
   if (!globMatcher) return {}
   debug('Gathering extra files...')
   const entryDir = path.dirname(entrypoint)

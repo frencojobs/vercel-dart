@@ -10,8 +10,6 @@
   "repository": "frencojobs/vercel-dart",
   "license": "MIT",
   "author": "Frenco <hey@frenco.dev>",
-  "type": "module",
-  "exports": "./dist/index.js",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -19,7 +17,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "postbuild": "cpy src '!**/*.ts' dist",
+    "copy-extras": "cpy src '!**/*.ts' dist",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "prepare": "husky install",
     "vercel-build": "cd web && yarn install && yarn build",
@@ -61,9 +59,9 @@
     }
   },
   "dependencies": {
-    "execa": "^5.0.0",
-    "fast-glob": "^3.2.5",
-    "js-yaml": "^4.0.0"
+    "execa": "^5.1.1",
+    "fast-glob": "^3.2.7",
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",

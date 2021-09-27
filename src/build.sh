@@ -12,7 +12,7 @@ cp "$BUILDER/bootstrap.dart.txt" bootstrap.dart
 
 # Build binary file
 pub get
-dart2native bootstrap.dart -o bootstrap
+dart compile exe bootstrap.dart -o bootstrap
 
 # Make cache folder & copy bootstrap file into it
 mkdir -p $DIST

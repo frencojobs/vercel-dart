@@ -4,6 +4,8 @@ export const tsup: Options = {
   sourcemap: true,
   clean: true,
   splitting: false,
-  format: ['esm'],
+  format: ['cjs'],
+  env: {NODE_ENV: process.env.NODE_ENV as string},
+  onSuccess: 'npm run copy-extras',
   entryPoints: ['src/index.ts']
 }
