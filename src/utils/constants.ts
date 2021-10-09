@@ -9,6 +9,7 @@ export const RUNTIME_PKG =
     : {
         git: {
           url: 'https://github.com/frencojobs/vercel-dart',
+          ref: 'dev',
           path: 'dart'
         }
       }

@@ -6,7 +6,7 @@ repository: https://github.com/frencojobs/vercel-dart
 publish_to: none # until the PR #24 is merged
 
 environment:
-  sdk: ">=2.12.0-0 <3.0.0"
+  sdk: '>=2.12.0-0 <3.0.0'
 
 dependencies:
   aws_lambda_dart_runtime: ^1.0.3+2
