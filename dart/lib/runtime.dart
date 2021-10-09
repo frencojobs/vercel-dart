@@ -1,22 +1,44 @@
-import 'package:aws_lambda_dart_runtime/aws_lambda_dart_runtime.dart' as aws;
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:http/http.dart' as http;
 import 'package:shelf/shelf.dart' as shelf;
 
-import 'src/models/event.dart';
-import 'src/utils/response_to_object.dart';
+part 'src/aws.dart';
 
-void handle(shelf.Handler handler, {String name = 'bootstrap'}) {
-  // ignore: prefer_function_declarations_over_variables
-  final aws.Handler<Event> _handler = (context, event) async {
-    final res = await handler(event.body);
+/// AWS Lambda Runtime
+///
+/// Based on the lambda runtime implementation of
+/// https://github.com/vercel-community/deno.
+Future<void> handle(shelf.Handler handler) async {
+  while (true) {
+    final next = await Invocation.next();
+    shelf.Response? result;
 
-    return aws.InvocationResult(
-      context.requestId!,
-      await responseToObject(res),
-    );
-  };
+    try {
+      final data = jsonDecode(next.event['body'] as String);
+      final req = _requestFromJson(data as Map<String, dynamic>);
+      final res = await handler(req);
 
-  aws.Runtime()
-    ..registerEvent<Event>((Map<String, dynamic> json) => Event.fromJson(json))
-    ..registerHandler<Event>(name, _handler)
-    ..invoke();
+      result = res;
+    } catch (e, stacktrace) {
+      final err = e is! Exception ? Exception(e) : e;
+      stderr.writeln(err);
+      await Invocation.postError(next.awsRequestId, err, stacktrace);
+      continue;
+    }
+    await Invocation.respond(result, next.awsRequestId);
+  }
+}
+
+shelf.Request _requestFromJson(Map<String, dynamic> map) {
+  final host = map['host'] as String;
+  final path = map['path'] as String;
+
+  return shelf.Request(
+    map['method'] as String,
+    Uri.parse('http${host.startsWith('localhost') ? '' : 's'}://$host$path'),
+    headers: map['headers'] as Map<String, Object>,
+    body: map['body'],
+  );
 }
