@@ -5,7 +5,8 @@ export const tsup: Options = {
   clean: true,
   splitting: false,
   format: ['cjs'],
-  env: {NODE_ENV: process.env.NODE_ENV as string},
+  env: {VDR_DEBUG: process.env.VDR_DEBUG as string},
   onSuccess: 'npm run copy-extras',
+  skipNodeModulesBundle: true,
   entryPoints: ['src/index.ts']
 }
