@@ -9,7 +9,7 @@ part 'src/aws.dart';
 /// AWS Lambda Runtime
 ///
 /// Based on the lambda runtime implementation of
-/// https://github.com/vercel-community/deno.
+/// https://github.com/vercel-community/deno
 Future<void> handle(shelf.Handler handler) async {
   while (true) {
     final next = await Invocation.next();
