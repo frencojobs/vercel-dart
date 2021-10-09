@@ -27,7 +27,7 @@ Future<void> handle(shelf.Handler handler) async {
       await Invocation.postError(next.awsRequestId, err, stacktrace);
       continue;
     }
-    await Invocation.respond(result, next.awsRequestId);
+    await Invocation.respond(await _shelfResponseToMap(result), next.awsRequestId);
   }
 }
 
@@ -38,7 +38,16 @@ shelf.Request _requestFromJson(Map<String, dynamic> map) {
   return shelf.Request(
     map['method'] as String,
     Uri.parse('http${host.startsWith('localhost') ? '' : 's'}://$host$path'),
-    headers: map['headers'] as Map<String, Object>,
+    headers: Map<String, Object>.from(map['headers'] as Map<String, dynamic>),
     body: map['body'],
   );
+}
+
+Future<Map> _shelfResponseToMap(shelf.Response res) async {
+  return {
+    'statusCode': res.statusCode,
+    'headers': res.headers,
+    'body': await res.readAsString(),
+    'encoding': res.encoding?.name,
+  };
 }
