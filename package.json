@@ -20,8 +20,7 @@
     "copy-extras": "cpy src '!**/*.ts' dist",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "prepare": "husky install",
-    "release-vercel-build": "cd web && yarn install && yarn build",
-    "vercel-build": "[ '$VDR_DEBUG' ] || npm run release-vercel-build",
+    "vercel-build": "cd web && yarn install && yarn build",
     "watch": "tsup --watch"
   },
   "prettier": "minimalistic",
