@@ -22,14 +22,14 @@ class Invocation {
       throw Exception('Unexpected "/invocation/next" response: $res');
     }
 
-    final traceId = res.headers['lambda-runtime-trace-id'];
-    const xAmznTraceId = '_X_AMZN_TRACE_ID';
-
-    if (traceId != null) {
-      Platform.environment[xAmznTraceId] = '';
-    } else {
-      Platform.environment.remove(xAmznTraceId);
-    }
+    // commented this implementation because environment variables are unmodifiable
+    // final traceId = res.headers['lambda-runtime-trace-id'];
+    // const xAmznTraceId = '_X_AMZN_TRACE_ID';
+    // if (traceId != null) {
+    //   Platform.environment.update(xAmznTraceId, (_) => traceId, ifAbsent: () => traceId);
+    // } else {
+    //   Platform.environment.remove(xAmznTraceId);
+    // }
 
     final awsRequestId = res.headers['lambda-runtime-aws-request-id'];
     if (awsRequestId == null) {
@@ -58,7 +58,7 @@ class Invocation {
     );
   }
 
-  static Future<void> respond(shelf.Response result, String awsRequestId) async {
+  static Future<void> respond(Map result, String awsRequestId) async {
     final res = await _client.post(
       _url('invocation/$awsRequestId/response'),
       body: jsonEncode(result),
