@@ -7,7 +7,7 @@ Future<Response> handler(Request req) async {
   final client = PubClient();
 
   final package = req.requestedUri.queryParameters['package'];
-  final score = await client.packageScore(package);
+  final score = await client.packageScore(package!);
 
   final data = {
     'likes': score.likeCount,
